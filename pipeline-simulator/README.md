@@ -1,4 +1,4 @@
-# Project 4. MIPS Pipelined Simulator
+#  MIPS Pipelined Simulator
 
 Skeleton developed by CMU,
 modified for AJOU SCE212.

@@ -1,4 +1,4 @@
- # Project #2: Building a Simple MIPS Simulator
+ # Building a Simple MIPS Simulator
 
  ### Goal
  This programming assignment is designed for an educational purpose. As we learned in the lectures, the objective
