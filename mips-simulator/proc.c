@@ -181,6 +181,9 @@ void execute(struct inst_t inst)
         case 0x08: //(0x001000)JR
             g_processor.pc = g_processor.regs[inst.r_t.r_i.rs];
             break;
+        case 0x20: //(0x100000)ADD
+            g_processor.regs[inst.r_t.r_i.r_i.r.rd] = g_processor.regs[inst.r_t.r_i.rs] + g_processor.regs[inst.r_t.r_i.rt];
+            break;
         case 0x21: //(0x100001)ADDU
             g_processor.regs[inst.r_t.r_i.r_i.r.rd] = g_processor.regs[inst.r_t.r_i.rs] + g_processor.regs[inst.r_t.r_i.rt];
             break;
@@ -253,21 +256,21 @@ void execute(struct inst_t inst)
 }
 
 /***************************************************************/
-/* Advance a cycle                                             */
+/* Advance a cycle (5 stage)                                            */
 /***************************************************************/
 void cycle()
 {
     int inst_reg;
     struct inst_t inst;
 
-    // 1. fetch
+    // 1. Instruction Fetch (IF)
     inst_reg = fetch(g_processor.pc);
     g_processor.pc += BYTES_PER_WORD;
 
-    // 2. decode
+    // 2. Instruction Decode (ID)
     inst = decode(inst_reg);
 
-    // 3. execute
+    // 3. Execute (EX)
     execute(inst);
 
     // 4. update stats
